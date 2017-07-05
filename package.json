@@ -1,0 +1,22 @@
+{
+  "name": "fronck",
+  "version": "1.0.0",
+  "description": "fronck",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/albertzzy/fronck.git"
+  },
+  "keywords": [
+    "lalala"
+  ],
+  "author": "albert",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/albertzzy/fronck/issues"
+  },
+  "homepage": "https://github.com/albertzzy/fronck#readme"
+}
