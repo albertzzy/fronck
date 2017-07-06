@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/albertzzy/fronck/issues"
   },
-  "homepage": "https://github.com/albertzzy/fronck#readme"
+  "homepage": "https://github.com/albertzzy/fronck#readme",
+  "dependencies": {
+    "koa": "^2.3.0"
+  }
 }
