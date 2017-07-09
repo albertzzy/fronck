@@ -1,0 +1,98 @@
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>api manage platform</title>
+        <script type="text/javascript" src="/jquery-3.2.1.min.js"></script>
+    </head>
+    <body>
+        <header>api manage platform</header>
+
+        <textarea name="api" id="api" cols="30" rows="10"></textarea>
+        <button id="delete">delete</button>
+        <button id="save">save</button>
+
+        <h2>project</h2>
+        name:<input type="text" id="pname"/>
+        author:<input type="text" id="pauthor"/>
+        <button id="psave">save</button>
+
+
+
+
+    </body>
+
+    <script type="text/javascript">
+        var save = document.querySelector('#save');
+        var api = document.querySelector('#api');
+        var del = document.querySelector('#delete');
+        var $psave = $('#psave');
+        var $pname = $('#pname');
+        var $pauthor = $('#pauthor');
+
+        // save
+        save.addEventListener('click',function(){
+            var val = api.value;
+            console.log(val);
+
+            $.ajax({
+                type:'post',
+                url:'apis/add',
+                data:{
+                    api:val
+                },
+                success:function(res){
+                    console.log(res);
+                },
+                error:function(err){
+                    console.log(err);
+                }
+
+            })
+
+
+        })
+
+        // delete
+        del.addEventListener('click',function(){
+
+             $.ajax({
+                type:'get',
+                url:'apis/delete/1212',
+                success:function(res){
+                    console.log(res);
+                },
+                error:function(err){
+                    console.log(err);
+                }
+
+            })
+        })
+
+        // projects
+        $psave.on('click',function(){
+            var pname = $pname.val();
+            var pauthor = $pauthor.val();
+
+            $.ajax({
+                type:'post',
+                url:'projects/add',
+                data:{
+                    name:pname,
+                    author:pauthor
+                },  
+                success:function(res){
+                    console.log(res);
+                },
+                error:function(err){
+                    console.log(err);
+                }
+
+            })
+
+        })
+
+
+
+
+    </script>
+</html>
