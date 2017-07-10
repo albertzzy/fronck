@@ -1,9 +1,9 @@
 # fronck
 
-    projectlist
-        project manage - add save edit
-        apilist
-            api manage - add save edit
+    projectlist - get list
+        project manage - add save delete
+        apilist - get list
+            api manage - add save delete
     
 
 

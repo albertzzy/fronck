@@ -14,11 +14,14 @@
         <h2>project</h2>
         name:<input type="text" id="pname"/>
         author:<input type="text" id="pauthor"/>
-        <button id="psave">save</button>
+        <button id="psave">add</button>
 
-
-
-
+    
+        <button id="p-esave">save</button>
+        <button id="p-edel">delete</button>
+        <button id="p-getall">get all projects</button>
+        
+        
     </body>
 
     <script type="text/javascript">
@@ -28,6 +31,12 @@
         var $psave = $('#psave');
         var $pname = $('#pname');
         var $pauthor = $('#pauthor');
+
+        var $pename = $('#p-ename');
+        var $peauthor = $('#p-eauthor');
+        var $pesave = $('#p-esave');
+        var $pedel = $('#p-edel');
+        var $getall = $('#p-getall');
 
         // save
         save.addEventListener('click',function(){
@@ -91,6 +100,58 @@
 
         })
 
+
+        // query all projects
+        $getall.on('click',function(){
+            $.ajax({
+                type:'get',
+                url:'projects/queryAll',
+                success:function(res){
+                    console.log(res);
+                },
+                error:function(e){
+                    console.log(e);
+                }
+            })
+        })
+        
+
+        $pesave.on('click',function(){
+            $.ajax({
+                type:'post',
+                url:'projects/save',
+                data:{
+                    pid:'59623266939f7a3d383af311',
+                    name:"zzy",
+                    author:'asshole'
+                },
+                success:function(res){
+                    console.log(res);
+                },
+                error:function(e){
+                    console.log(e);
+                }
+            })
+
+        })
+
+        $pedel.on('click',function(){
+            $.ajax({
+                type:'post',
+                url:'projects/delete',
+                data:{
+                    pid:'596237df3015c23c2c1de055'
+                },
+                success:function(res){
+                    console.log(res);
+                },
+                error:function(e){
+                    console.log(e);
+                }
+            })
+
+        })
+        
 
 
 

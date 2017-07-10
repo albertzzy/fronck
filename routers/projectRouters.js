@@ -28,18 +28,39 @@ router.post('/add',async function(ctx,next){
    ctx.body = await resPromise;
     
 })
-.post('/save',function(ctx,next){
+
+
+router.post('/save',async function(ctx,next){
     let param = ctx.request.body;
+    
+    await Project.findOneAndUpdate({_id:param.pid},{name:param.name,author:param.author})
 
     ctx.body = {
         result:'success'
     }
 })
-.get('/delete/:pid',function(ctx,next){
-    let param = ctx.params.pid;
+
+
+
+
+router.post('/delete',async function(ctx,next){
+    let param = ctx.request.body;
+
+    await Project.findByIdAndRemove(param.pid)
 
     ctx.body = {
         result:'success'
+    }
+})
+
+
+
+router.get('/queryAll',async function(ctx,next){
+    let projectList = await Project.find();
+
+    ctx.body = {
+        result:'success',
+        data:projectList
     }
 })
 
