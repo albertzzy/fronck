@@ -12,14 +12,17 @@ router.post('/add',function(ctx,next){
         result:'success'
     }
 })
-.post('/save',function(ctx,next){
+
+router.post('/save',function(ctx,next){
     let param = ctx.request.body;
 
     ctx.body = {
         result:'success'
     }
 })
-.get('/delete/:aid',function(ctx,next){
+
+
+router.get('/delete/:aid',function(ctx,next){
     let param = ctx.params.aid;
 
     ctx.body = {
