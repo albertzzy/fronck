@@ -6,7 +6,7 @@ const Mixed = Schema.Types.mixed;
 const user = new Schema({
     name:{type:String},
     groups:{type:Array,default:[]},
-    projects:{type:String},
+    projects:{type:Array,default:[]},
     password:{type:String},
     email:{type:String}    
 })
