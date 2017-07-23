@@ -12,11 +12,13 @@ const projectRouters = require('./routers/projectRouters');
 const MgStore = require('./store')
 
 const app = new koa();
-mongoose.connect('mongodb://localhost:27017/apm');
+mongoose.connect('mongodb://localhost:27017/apm',{
+    useMongoClient:true
+});
 
 
 const config = {
-    store:new MgStore(),
+    ContextStore :MgStore,
     key:'apm:sess',
     maxAge:864000,
     rolling:false    

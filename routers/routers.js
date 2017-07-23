@@ -1,6 +1,6 @@
 const Router = require('koa-router');
 const fs = require('fs');
-
+const UserModel = require('../models/user');
 
 const router = Router();
 
@@ -13,10 +13,36 @@ router.get('/',function (ctx,next){
     ctx.body = file;
 })
 
-// router.get('project/:pid',function(ctx,next){
+
+router.post('/signup',function(ctx,next){
+    let params = ctx.request.body;
+
+    let user = new UserModel({
+        name:params.name,
+        email:params.email,
+        password:params.password
+    })
+
+    user.save(function(err){
+        if(err){console.log(err);next(err)}
+
+    })
+
+})
 
 
-// })
+
+router.post('/login',function(ctx,next){
+    
+
+
+})
+
+router.post('/logout',function(ctx,next){
+    
+
+})
+
 
 
 module.exports = router;
