@@ -1,6 +1,8 @@
 const Router = require('koa-router');
 const fs = require('fs');
 const UserModel = require('../models/user');
+const  crypto = require('crypto');
+const hash = crypto.createHash('sha256');
 
 const router = Router();
 
@@ -33,13 +35,31 @@ router.post('/signup',function(ctx,next){
 
 
 router.post('/login',function(ctx,next){
+    let params = ctx.request.body;
+    // verify
+
+
+
+
     
+    let rand = crypto.randomBytes(16,function(err,buf){
+        if(err){console.log(err)}
+
+        hash.update(buf);
+        let digest = hash.digest('hex');
+
+
+        ctx.cookies.set('sessid',digest);
+
+    })
+
+
 
 
 })
 
 router.post('/logout',function(ctx,next){
-    
+
 
 })
 
