@@ -15,9 +15,17 @@
   "author": "albert",
   "license": "ISC",
   "dependencies": {
+    "mobx": "^3.2.2",
     "react": "^15.6.1",
     "react-redux": "^5.0.5",
     "react-router": "^4.1.2",
     "redux": "^3.7.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1"
   }
 }
