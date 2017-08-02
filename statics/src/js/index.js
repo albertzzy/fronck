@@ -51,3 +51,13 @@ class OrderLine {
 const line = new OrderLine();
 console.log("price" in line); // true
 console.log(line.hasOwnProperty("price")); // true, 现在所有的属性都定义在实例上了
+
+
+
+
+
+
+
+
+
+

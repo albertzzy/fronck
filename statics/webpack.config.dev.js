@@ -18,13 +18,13 @@ const config = {
         index:[
             'webpack-dev-server/client?http://localhost:8080',
             'webpack/hot/only-dev-server',
-            './src/index'
+            './src/js/index.js'
         ],
-        vendor:[]
+        vendor:['mobx','react','mobx-react']
     },
     output:{
         path:path.resolve(__dirname,'dev/js/'),
-        filename:'bundle.js' 
+        filename:'[name].js' 
     },
     devServer:{
         host:process.env.HOST,
@@ -66,7 +66,7 @@ const config = {
             title: 'Output Management'
         }),
         new webpack.optimize.CommonsChunkPlugin({
-            
+            name:'vendor'
 
         })
     ]
