@@ -19,6 +19,7 @@
   "dependencies": {
     "mobx": "^3.2.2",
     "mobx-react": "^4.2.2",
+    "next": "^3.0.1-beta.20",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.5",
