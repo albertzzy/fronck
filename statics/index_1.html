@@ -1,0 +1,169 @@
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>api manage platform</title>
+        <script type="text/javascript" src="/jquery-3.2.1.min.js"></script>
+    </head>
+    <body>
+        <header>api manage platform</header>
+
+        <textarea name="api" id="api" cols="30" rows="10"></textarea>
+        <button id="delete">delete</button>
+        <button id="save">save</button>
+
+        <h2>project</h2>
+        name:<input type="text" id="pname"/>
+        author:<input type="text" id="pauthor"/>
+        <button id="psave">add</button>
+
+    
+        <button id="p-esave">save</button>
+        <button id="p-edel">delete</button>
+        <button id="p-getall">get all projects</button>
+        
+
+        <p>login</p>
+        <label for="login-user">user:</label><input type="text" id="login-user"/>
+        <label for="login-password">password:</label><input type="text" id="login-password"/>
+        <button id="loginsubmit">submit</button>
+        
+        <p>account</p>
+        <label for="account-user">user:</label><input type="text" id="account-user"/>
+        <label for="account-password">password:</label><input type="text" id="account-password"/>
+        <label for="account-email">email:</label><input type="text" id="account-password"/>
+        <button id="accountsubmit">submit</button>
+    </body>
+
+    <script type="text/javascript">
+        var save = document.querySelector('#save');
+        var api = document.querySelector('#api');
+        var del = document.querySelector('#delete');
+        var $psave = $('#psave');
+        var $pname = $('#pname');
+        var $pauthor = $('#pauthor');
+
+        var $pename = $('#p-ename');
+        var $peauthor = $('#p-eauthor');
+        var $pesave = $('#p-esave');
+        var $pedel = $('#p-edel');
+        var $getall = $('#p-getall');
+
+        // save
+        save.addEventListener('click',function(){
+            var val = api.value;
+            console.log(val);
+
+            $.ajax({
+                type:'post',
+                url:'apis/add',
+                data:{
+                    api:val
+                },
+                success:function(res){
+                    console.log(res);
+                },
+                error:function(err){
+                    console.log(err);
+                }
+
+            })
+
+
+        })
+
+        // delete
+        del.addEventListener('click',function(){
+
+             $.ajax({
+                type:'get',
+                url:'apis/delete/1212',
+                success:function(res){
+                    console.log(res);
+                },
+                error:function(err){
+                    console.log(err);
+                }
+
+            })
+        })
+
+        // projects
+        $psave.on('click',function(){
+            var pname = $pname.val();
+            var pauthor = $pauthor.val();
+
+            $.ajax({
+                type:'post',
+                url:'projects/add',
+                data:{
+                    name:pname,
+                    author:pauthor
+                },  
+                success:function(res){
+                    console.log(res);
+                },
+                error:function(err){
+                    console.log(err);
+                }
+
+            })
+
+        })
+
+
+        // query all projects
+        $getall.on('click',function(){
+            $.ajax({
+                type:'get',
+                url:'projects/queryAll',
+                success:function(res){
+                    console.log(res);
+                },
+                error:function(e){
+                    console.log(e);
+                }
+            })
+        })
+        
+
+        $pesave.on('click',function(){
+            $.ajax({
+                type:'post',
+                url:'projects/save',
+                data:{
+                    pid:'59623266939f7a3d383af311',
+                    name:"zzy",
+                    author:'asshole'
+                },
+                success:function(res){
+                    console.log(res);
+                },
+                error:function(e){
+                    console.log(e);
+                }
+            })
+
+        })
+
+        $pedel.on('click',function(){
+            $.ajax({
+                type:'post',
+                url:'projects/delete',
+                data:{
+                    pid:'596237df3015c23c2c1de055'
+                },
+                success:function(res){
+                    console.log(res);
+                },
+                error:function(e){
+                    console.log(e);
+                }
+            })
+
+        })
+        
+
+
+
+    </script>
+</html>
