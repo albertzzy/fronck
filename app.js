@@ -4,17 +4,31 @@ const koaBody = require('koa-body');
 const mongoose = require('mongoose');
 const session = require('koa-session');
 
+// next.js
+const next = require('next');
+const dev = process.env.NODE_ENV !== 'production';
+const nextApp = next({
+	dev,
+	dir:'./statics'
+});
 
+
+
+// routers
+const pageRouters = require('./routers/pageRouters');
 const routers  = require('./routers/routers');
 const apiRouters = require('./routers/apiRouters');
 const projectRouters = require('./routers/projectRouters');
 
+// session store
 const MgStore = require('./store')
 
+
 const app = new koa();
-mongoose.connect('mongodb://localhost:27017/apm',{
+
+/*mongoose.connect('mongodb://localhost:27017/apm',{
     useMongoClient:true
-});
+});*/
 
 
 const config = {
@@ -24,26 +38,41 @@ const config = {
     rolling:false    
 }
 
-app.use(koaBody())
+
+nextApp.prepare().then(()=>{
+
+	app.use(koaBody());
+	
+
+	// app.use(session(config,app));
 
 
-app.use(koaStatic('statics/lib/'))
+	// page routes
+	app.use(pageRouters(nextApp));
 
 
-app.use(session(config,app))
-
-
-
-app.use(routers.routes());
-app.use(apiRouters.routes());
-app.use(projectRouters.routes());
-
+	// api routes
+	app.use(routers.routes());
+	app.use(apiRouters.routes());
+	app.use(projectRouters.routes());
 
 
 
+	app.listen(3000,()=>{
+	    console.log('app is listening at 3000 u smart ass...');
+	})
 
-app.listen(3000,()=>{
-    console.log('app is listening at 3000...');
+
 })
+
+
+
+
+
+
+
+
+
+
 
 

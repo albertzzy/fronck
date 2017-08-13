@@ -5,7 +5,7 @@ class MgStore{
 
     constructor(ctx){
         this.ctx = ctx;
-        console.log(ctx)
+        // console.log(ctx)
     }
 
 
