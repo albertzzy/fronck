@@ -44,7 +44,8 @@ nextApp.prepare().then(()=>{
 	app.use(koaBody());
 	
 
-	// app.use(session(config,app));
+	app.use(session(config,app));
+
 
 
 	// page routes
