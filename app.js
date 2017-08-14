@@ -26,9 +26,9 @@ const MgStore = require('./store')
 
 const app = new koa();
 
-/*mongoose.connect('mongodb://localhost:27017/apm',{
+mongoose.connect('mongodb://localhost:27017/apm',{
     useMongoClient:true
-});*/
+});
 
 
 const config = {
