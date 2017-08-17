@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const crypto = require('crypto');
+const bcrypto = require('bcrypto');
 
 
 const Schema = mongoose.Schema;
@@ -16,6 +16,7 @@ const UserSchema = new Schema({
 UserSchema.pre('save',function(next){
     var user = this;
 
+    
     
 
 
