@@ -17,30 +17,79 @@ function pageRouters(nextApp){
 
 	})	
 
-
-
 	router.get('/ws',(ctx,next)=>{
 
-
 		nextApp.render(ctx.req,ctx.res,'/workspace');
-
 
 	})*/
 
 
 	
 	// that's default route-handler
-	router.get('*',(ctx,next)=>{	
 
-
-		console.log('======================')
-		console.log(ctx.session)
-		console.log('======================')
-
+	router.get('/index',(ctx,next)=>{	
 
 		return handle(ctx.req, ctx.res);
 
 	})
+
+
+	router.get('/apiDetail',function(ctx,next){
+
+		console.log(ctx.session.isNew);
+
+		if(ctx.session.isNew){
+
+			ctx.redirect('/index');
+
+		}else{
+
+			return handle(ctx.req, ctx.res);
+		}
+
+	})
+
+
+	router.get('/workspace',function(ctx,next){
+
+		// console.log(this.session);
+
+		if(ctx.session.isNew){
+
+			ctx.redirect('/index');
+
+		}else{
+
+			return handle(ctx.req, ctx.res);
+		}
+		
+	})
+
+
+	router.get('/project',function(ctx,next){
+
+		// console.log(this.session);
+
+		if(ctx.session.isNew){
+
+			ctx.redirect('/index');
+
+		}else{
+
+			return handle(ctx.req, ctx.res);
+		}
+		
+	})
+
+
+	// other stuff?
+	router.get('*',(ctx,next)=>{	
+
+		return handle(ctx.req, ctx.res);
+
+	})
+
+
 
 
 	return router.routes();

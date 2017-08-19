@@ -10,7 +10,7 @@ export default class Workspace extends React.Component{
 
 	render(){
 		return(
-			<div>this is a Workspace page</div>
+			<Header>this is a Workspace page</Header>
 
 		)
 

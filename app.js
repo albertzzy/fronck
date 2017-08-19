@@ -16,7 +16,7 @@ const nextApp = next({
 
 // routers
 const pageRouters = require('./routers/pageRouters');
-const routers  = require('./routers/routers');
+const signRouters  = require('./routers/signRouters');
 const apiRouters = require('./routers/apiRouters');
 const projectRouters = require('./routers/projectRouters');
 
@@ -53,7 +53,7 @@ nextApp.prepare().then(()=>{
 
 
 	// api routes
-	app.use(routers.routes());
+	app.use(signRouters.routes());
 	app.use(apiRouters.routes());
 	app.use(projectRouters.routes());
 
