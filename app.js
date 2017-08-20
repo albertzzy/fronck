@@ -1,7 +1,11 @@
 const koa = require('koa')
 const koaStatic = require('koa-static');
 const koaBody = require('koa-body');
+
+//plugin own promise 
 const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+
 const session = require('koa-session');
 
 // next.js

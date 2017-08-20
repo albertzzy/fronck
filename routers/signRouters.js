@@ -18,19 +18,25 @@ router.post('/signup',async function(ctx,next){
         password
     })
 
+    
+    let pro = new Promise(function(resolve,reject){
+
+        user.save(function(err,res){
+            
+            if(err){
+                reject(err)
+
+            }else{
+
+                resolve(res)
+            }
+        });
+
+    })  
 
 
-    try{
+    ctx.body = await pro;
 
-       let res = await user.save();
-
-       ctx.body = res;     
-
-    }catch(e){
-
-        // ctx.body = e;
-
-    }
 
 
 })
@@ -40,7 +46,15 @@ router.post('/signup',async function(ctx,next){
 router.post('/signin',function(ctx,next){
     let param = ctx.request.body;
     
-    let {name,email,password} = param;
+    let {name,password} = param;
+
+    UserModel.find({$or:[{name:name},{email:name}]}).exec().then((res)=>{
+
+        console.log(res);
+
+
+
+    })
 
 
 

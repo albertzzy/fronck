@@ -14,13 +14,25 @@ const UserSchema = new Schema({
 
 
 UserSchema.pre('save',function(next){
-    var user = this;
-
+    var self = this;
     
-    
+    // encrypt password
 
+    var password = this.password;
+
+    bcrypt.genSalt(10,function(err,salt){
+
+        bcrypt.hash(password, salt, function(err, hash) {
+
+            self.password = hash;
+
+        });
+
+    })
 
 });
+
+
 
 UserSchema.methods = {
     comparePassword:function(password,cb){
