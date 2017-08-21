@@ -16,19 +16,25 @@ const UserSchema = new Schema({
 UserSchema.pre('save',function(next){
     var self = this;
     
+    console.log(this.password);
     // encrypt password
 
-    var password = this.password;
+    // var password = this.password;
 
-    bcrypt.genSalt(10,function(err,salt){
+   /* bcrypt.genSalt(10,function(err,salt){
 
         bcrypt.hash(password, salt, function(err, hash) {
 
+            if(err){
+                return next(err);
+            }
+
             self.password = hash;
 
+            next();
         });
 
-    })
+    })*/
 
 });
 

@@ -45,7 +45,7 @@ export default class IndexPage extends React.Component{
 	handleSignUp(){
 		let {name,email,password} = this.state;
 
-		fetch('/signup',{
+		/*fetch('/signup',{
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -58,7 +58,23 @@ export default class IndexPage extends React.Component{
 		}).then((res)=>{
 
 			console.log(res);
-		})
+		})*/
+
+
+		let xhr = new XMLHttpRequest();
+		xhr.open('post','/signup',true);
+
+		xhr.onreadyStateChange = function(){
+			if(this.readyState == 4){
+				console.log(this.responseText)
+			}
+		}
+
+		xhr.send(JSON.stringify({
+			name,
+			email,
+			password
+		}))
 
 	}
 	

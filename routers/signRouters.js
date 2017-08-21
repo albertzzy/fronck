@@ -21,14 +21,21 @@ router.post('/signup',async function(ctx,next){
     
     let pro = new Promise(function(resolve,reject){
 
+// console.log('++++++++++++++')
         user.save(function(err,res){
             
+        console.log(err);
+        console.log('=========');
+        console.log(res);
+
             if(err){
                 reject(err)
 
+                // ctx.body = err;
             }else{
 
                 resolve(res)
+                // ctx.body = res;
             }
         });
 
