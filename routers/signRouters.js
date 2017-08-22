@@ -19,15 +19,10 @@ router.post('/signup',async function(ctx,next){
     })
 
     
-    let pro = new Promise(function(resolve,reject){
+     /*let pro = new Promise(function(resolve,reject){
 
-// console.log('++++++++++++++')
-        user.save(function(err,res){
-            
-        console.log(err);
-        console.log('=========');
-        console.log(res);
-
+       user.save(function(err,res){
+        
             if(err){
                 reject(err)
 
@@ -39,8 +34,19 @@ router.post('/signup',async function(ctx,next){
             }
         });
 
-    })  
+    })  */
 
+    let pro = user.save();
+
+    pro.then(function(res){
+        return {
+            result:res
+        }
+    }).catch(function(err){
+        return {
+            result:"error"
+        }
+    })
 
     ctx.body = await pro;
 
