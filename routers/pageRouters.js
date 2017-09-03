@@ -29,6 +29,8 @@ function pageRouters(nextApp){
 
 	router.get('/index',(ctx,next)=>{	
 
+		console.log(ctx.session);
+
 		return handle(ctx.req, ctx.res);
 
 	})

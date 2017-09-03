@@ -36,9 +36,9 @@ mongoose.connect('mongodb://localhost:27017/apm',{
 
 
 const config = {
-    ContextStore :MgStore,
+    ContextStore:MgStore,
     key:'apm:sess',
-    maxAge:864000,
+    maxAge:86400000,
     rolling:false    
 }
 

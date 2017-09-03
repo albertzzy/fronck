@@ -5,11 +5,13 @@ class MgStore{
 
     constructor(ctx){
         this.ctx = ctx;
-        // console.log(ctx)
+
     }
 
 
     async get(key,maxAge,{rolling}){
+        console.log('get');
+
         let sid = this.ctx.cookies.get(key);
         try{
             let sess = await SessionModel.findOne({sid:sid});
@@ -23,6 +25,9 @@ class MgStore{
     }
 
     async set(key,sess,maxAge,{rolling,changed}){
+
+        console.log('set');
+
         let sid = this.ctx.cookies.get(key);
 
         let se = new SessionModel({
@@ -40,6 +45,9 @@ class MgStore{
     }
 
     async destroy(key){
+
+        console.log('destroy');
+
         this.ctx.session = null;
         let sid = this.ctx.cookies.get(key);
         try{

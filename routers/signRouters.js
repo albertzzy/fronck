@@ -18,51 +18,56 @@ router.post('/signup',async function(ctx,next){
         password
     })
 
-    
-    let pro = new Promise(function(resolve,reject){
+    try{
+        let pro =  await user.save();
 
-        user.save(function(err,res){
-            
-            if(err){
-                reject(err)
+        ctx.body = {
+            success:true,
+            name,
+            email
+        }
 
-            }else{
+    }catch(e){
 
-                resolve(res)
-            }
-        });
-
-    })  
-
-
-    ctx.body = await pro;
-
-
+        ctx.body = new Error('saved error');
+    }
 
 })
 
 
 
-router.post('/signin',function(ctx,next){
+router.post('/signin',async function(ctx,next){
     let param = ctx.request.body;
     
     let {name,password} = param;
 
-    UserModel.find({$or:[{name:name},{email:name}]}).exec().then((res)=>{
+    try{
 
-        console.log(res);
-
-
-
-    })
+       let userPro = await UserModel.find({$or:[{name:name},{email:name}]}).exec();
 
 
+        let resPro = await userPro[0].comparePassword(password);
 
 
+        ctx.body = {
+            success:resPro,
+        };
 
-    ctx.body = {
-        result:'success'
-    }
+        /*if(resPro){
+            ctx.redirect('/workspace');
+        }else{
+            ctx.body = new Error('password error');
+        }*/
+
+       }catch(e){
+             ctx.body = {
+                 success:false,
+                 res:new Error('signin error')
+             }
+
+       }
+
+
 })
 
 

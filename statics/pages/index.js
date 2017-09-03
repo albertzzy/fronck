@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../components/header.js'
 import 'whatwg-fetch'
-
+import axios from 'axios'
 
 export default class IndexPage extends React.Component{
 	constructor(props){
@@ -10,8 +10,12 @@ export default class IndexPage extends React.Component{
 		this.state = {
 			name:'',
 			email:'',
-			password:''
+			password:'',
+			signinName:'',
+			signinPs:''
 		}
+		
+		this.handleSignIn = this.handleSignIn.bind(this);
 	}
 
 	
@@ -37,9 +41,41 @@ export default class IndexPage extends React.Component{
 		})
 	}
 
+	handleSigninName(e){
+		this.setState({
+			signinName:e.target.value
+		})
+	}
+
+	handleSigninPassword(e){
+		this.setState({
+			signinPs:e.target.value
+		})
+
+	}
 
 	handleSignIn(){
-		
+		let {signinName,signinPs} = this.state;
+
+		axios.post('/signin', {
+			name: signinName,
+			password: signinPs
+		})
+		.then(function (response) {
+			console.log(response);
+
+			if(response.data.success){
+				alert('to workspace')
+				window.location.href = '/workspace';
+
+			}else{
+
+
+			}
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
 	}
 
 	handleSignUp(){
@@ -76,8 +112,8 @@ export default class IndexPage extends React.Component{
 				<Header>signin</Header>
 
 				<div>
-					<p><label htmlFor="email">email/user</label><input type="text" /></p>
-					<p><label htmlFor="password">password</label><input type="text"/></p>
+					<p><label htmlFor="email">email/user</label><input type="text" onChange={(e)=>{this.handleSigninName.call(this,e)}} value={this.state.signinName}/></p>
+					<p><label htmlFor="password">password</label><input type="text" onChange={(e)=>{this.handleSigninPassword.call(this,e)}} value={this.state.signinPs}/></p>
 					<p><button onClick={this.handleSignIn}>signin</button></p>
 				</div>
 

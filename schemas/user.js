@@ -5,11 +5,20 @@ const bcrypt = require('bcryptjs');
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
-    name:{unique:true,type:String},
-    groups:{type:Array,default:[]},
-    projects:{type:Array,default:[]},
-    password:{type:String},
-    email:{unique:true,type:String}    
+    name:{
+        type:String,
+        unique:true  
+    },
+    groups:{
+        type:Array,
+        default:[]
+    },
+    projects:{
+        type:Array,
+        default:[]
+    },
+    password:String,
+    email:String
 });
 
 
@@ -21,11 +30,19 @@ UserSchema.pre('save',function(next){
     var password = this.password;
 
     bcrypt.genSalt(10,function(err,salt){
+        if(err){
+            return next(err);
+        }
 
         bcrypt.hash(password, salt, function(err, hash) {
+            if(err){
+                return next(err);
+            }
 
             self.password = hash;
 
+            next();
+            
         });
 
     })
@@ -35,17 +52,20 @@ UserSchema.pre('save',function(next){
 
 
 UserSchema.methods = {
-    comparePassword:function(password,cb){
-        console.log(this);
+    comparePassword:function(password){
+        var self = this;
 
-        bcrypt.compare(password,this.password,function(err,res){
-            if(err){
-                cb(err)
-            }else{
-                cb(null,res)
-            }
+        return new Promise(function(resolve,reject){
+
+            bcrypt.compare(password,self.password,function(err,res){
+                if(err){
+                    reject(err)
+                }else{
+                    resolve(res)
+                }
+            })
+
         })
-
     }
 
 
