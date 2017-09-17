@@ -37,20 +37,22 @@ mongoose.connect('mongodb://localhost:27017/apm',{
 
 const config = {
     ContextStore:MgStore,
-    key:'apm:sess',
-    maxAge:86400000,
+    // store:new MgStore(),
+    // key:'apm:sess',
+    maxAge:8640000,
     rolling:false    
 }
 
 
 nextApp.prepare().then(()=>{
-
+	
+	
 	app.use(koaBody());
 	
-
+	
+	
+	
 	app.use(session(config,app));
-
-
 
 	// page routes
 	app.use(pageRouters(nextApp));

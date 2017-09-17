@@ -8,7 +8,7 @@ const SessionSchema = new Schema({
         unique:true
     },
     expires:{
-        type:Date
+        type:Number
     },
     session:{
         type:String

@@ -12,15 +12,17 @@ router.post('/signup',async function(ctx,next){
 
     let {name,email,password} = param;
 
+    
     let user = new UserModel({
         name,
         email,
         password
     })
+    
 
     try{
         let pro =  await user.save();
-
+        
         ctx.body = {
             success:true,
             name,
@@ -53,12 +55,7 @@ router.post('/signin',async function(ctx,next){
             success:resPro,
         };
 
-        /*if(resPro){
-            ctx.redirect('/workspace');
-        }else{
-            ctx.body = new Error('password error');
-        }*/
-
+    
        }catch(e){
              ctx.body = {
                  success:false,

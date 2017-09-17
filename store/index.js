@@ -33,7 +33,7 @@ class MgStore{
         let se = new SessionModel({
             sid:sid,
             session:sess,
-            expires:new Date(new Date().getTime()+maxAge)
+            expires:new Date().getTime()+maxAge
         })
         try{
            await se.save();

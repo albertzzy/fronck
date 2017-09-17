@@ -65,7 +65,7 @@ export default class IndexPage extends React.Component{
 			console.log(response);
 
 			if(response.data.success){
-				alert('to workspace')
+				// alert('to workspace')
 				window.location.href = '/workspace';
 
 			}else{
@@ -81,36 +81,20 @@ export default class IndexPage extends React.Component{
 	handleSignUp(){
 		let {name,email,password} = this.state;
 
-		/*fetch('/signup',{
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				name,
-				email,
-				password
-			})
-		}).then((res)=>{
-
-			console.log(res);
-		})*/
-
-
-		let xhr = new XMLHttpRequest();
-		xhr.open('post','/signup',true);
-
-		xhr.onreadyStateChange = function(){
-			if(this.readyState == 4){
-				console.log(this.responseText)
-			}
-		}
-
-		xhr.send(JSON.stringify({
+		axios.post('/signup', {
 			name,
-			email,
-			password
-		}))
+			password,
+			email
+		})
+		.then(function (response) {
+			console.log(response);
+
+			
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
+
 
 	}
 	

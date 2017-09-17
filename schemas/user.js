@@ -39,6 +39,7 @@ UserSchema.pre('save',function(next){
                 return next(err);
             }
 
+            
             self.password = hash;
 
             next();
@@ -46,7 +47,7 @@ UserSchema.pre('save',function(next){
         });
 
     })
-    next();
+    // next();
 
 });
 
