@@ -36,18 +36,18 @@ function pageRouters(nextApp){
 	})
 
 
-	router.get('/apiDetail',function(ctx,next){
+	router.get('/apidetail',function(ctx,next){
 
 		// console.log(ctx.session.isNew);
 
-		if(ctx.session.isNew){
+		// if(ctx.session.isNew){
 
-			ctx.redirect('/index');
+		// 	ctx.redirect('/index');
 
-		}else{
+		// }else{
 
 			return handle(ctx.req, ctx.res);
-		}
+		// }
 
 	})
 
@@ -55,16 +55,16 @@ function pageRouters(nextApp){
 	router.get('/workspace',function(ctx,next){
 
 		// console.log(ctx.session);
-		// console.log(ctx.session.isNew);
+		console.log(JSON.stringify(ctx.session));
 
-		if(ctx.session.isNew){
+		/* if(ctx.session.isNew){
 
 			ctx.redirect('/index');
 
-		}else{
+		}else{ */
 
 			return handle(ctx.req, ctx.res);
-		}
+		// }
 		
 	})
 
@@ -73,14 +73,14 @@ function pageRouters(nextApp){
 
 		// console.log(this.session);
 
-		if(ctx.session.isNew){
+		/* if(ctx.session.isNew){
 
 			ctx.redirect('/index');
 
-		}else{
+		}else{ */
 
 			return handle(ctx.req, ctx.res);
-		}
+		// }
 		
 	})
 

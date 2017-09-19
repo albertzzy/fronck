@@ -1,5 +1,5 @@
 const Router = require('koa-router');
-const UserModel = require('../models/user');
+const ApiModel = require('../models/api');
 
 
 
@@ -8,19 +8,25 @@ const router = new Router({
 });
 
 // 产生一个唯一的id
-router.post('/add',function(ctx,next){
+router.post('/save',async function(ctx,next){
     let param = ctx.request.body;
 
-    ctx.body = {
-        result:'success'
+    let api = new ApiModel(param)
+    let res;
+
+    try{
+        res = await api.save();
+
+    }catch(e){
+        
+        res = e;
+
     }
-})
 
-router.post('/save',function(ctx,next){
-    let param = ctx.request.body;
 
     ctx.body = {
-        result:'success'
+        result:'success',
+        data:res
     }
 })
 

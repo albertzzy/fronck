@@ -34,5 +34,8 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "whatwg-fetch": "^2.0.3"
+  },
+  "devDependencies": {
+    "koa-session2": "^2.2.5"
   }
 }

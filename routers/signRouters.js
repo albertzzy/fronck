@@ -50,6 +50,9 @@ router.post('/signin',async function(ctx,next){
 
         let resPro = await userPro[0].comparePassword(password);
 
+        console.log('==========');
+        console.log(ctx.session);
+        console.log('==========');
 
         ctx.body = {
             success:resPro,

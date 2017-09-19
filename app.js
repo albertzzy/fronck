@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 const session = require('koa-session');
+// const session2 = require('koa-session2');
 
 // next.js
 const next = require('next');
@@ -39,8 +40,13 @@ const config = {
     ContextStore:MgStore,
     // store:new MgStore(),
     // key:'apm:sess',
-    maxAge:8640000,
-    rolling:false    
+    key: 'apm:sess',
+	maxAge: 86400000,
+	overwrite: true,
+	httpOnly: true,
+	signed: true,
+	rolling: false,
+	domain:''
 }
 
 
@@ -51,8 +57,17 @@ nextApp.prepare().then(()=>{
 	
 	
 	
-	
+	// koa-session
 	app.use(session(config,app));
+
+
+	// koa-session2
+	/* app.use(session2({
+		key:'apm:sess',
+		store:new MgStore(),
+		domain:'m.test.com',
+		maxAge:Date.now()+1000000
+	})); */
 
 	// page routes
 	app.use(pageRouters(nextApp));
