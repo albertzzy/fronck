@@ -7,7 +7,7 @@ const UserModel = require('../models/user');
 const router = Router();
 
 
-router.post('/signup',async function(ctx,next){
+router.post('/sign/signup',async function(ctx,next){
     let param = ctx.request.body;
 
     let {name,email,password} = param;
@@ -38,7 +38,7 @@ router.post('/signup',async function(ctx,next){
 
 
 
-router.post('/signin',async function(ctx,next){
+router.post('/sign/signin',async function(ctx,next){
     let param = ctx.request.body;
     
     let {name,password} = param;
@@ -49,10 +49,6 @@ router.post('/signin',async function(ctx,next){
 
 
         let resPro = await userPro[0].comparePassword(password);
-
-        console.log('==========');
-        console.log(ctx.session);
-        console.log('==========');
 
         ctx.body = {
             success:resPro,

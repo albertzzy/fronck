@@ -6,7 +6,15 @@ const koaBody = require('koa-body');
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
-const session = require('koa-session');
+mongoose.connect('mongodb://localhost:27017/apm',{
+    useMongoClient:true
+});
+
+
+// const session = require('koa-session');
+const jwtMongo = require('koa-jwt-mongo');
+const config = require('./config/default.json');
+
 // const session2 = require('koa-session2');
 
 // next.js
@@ -26,17 +34,14 @@ const apiRouters = require('./routers/apiRouters');
 const projectRouters = require('./routers/projectRouters');
 
 // session store
-const MgStore = require('./store')
+// const MgStore = require('./store')
 
 
 const app = new koa();
 
-mongoose.connect('mongodb://localhost:27017/apm',{
-    useMongoClient:true
-});
 
 
-const config = {
+/* const config = {
     ContextStore:MgStore,
     // store:new MgStore(),
     // key:'apm:sess',
@@ -47,7 +52,8 @@ const config = {
 	signed: true,
 	rolling: false,
 	domain:''
-}
+} */
+
 
 
 nextApp.prepare().then(()=>{
@@ -56,9 +62,33 @@ nextApp.prepare().then(()=>{
 	app.use(koaBody());
 	
 	
+	app.use( /* async (ctx,next)=>{
+
+			await  */jwtMongo({
+				connection:mongoose,
+				uri: 'mongodb://localhost:27017/apm',
+				jwtExp: config.jwt.expire,
+				collection: config.jwt.collection,
+				jwtOptions: {
+					secret: config.jwt.secret,
+					key: config.jwt.key
+				},
+				jwtUnless () {
+					const path = this.path;
+
+					const prefix = `/${path.split('/')[1]}`;
+					return !/apis|sign|projects/.test(prefix)
+				}
+			})
+
+			/* next();
+		} */
+		
+	);
+	
 	
 	// koa-session
-	app.use(session(config,app));
+	// app.use(session(config,app));
 
 
 	// koa-session2
@@ -68,6 +98,8 @@ nextApp.prepare().then(()=>{
 		domain:'m.test.com',
 		maxAge:Date.now()+1000000
 	})); */
+
+
 
 	// page routes
 	app.use(pageRouters(nextApp));

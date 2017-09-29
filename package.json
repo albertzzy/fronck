@@ -26,6 +26,7 @@
     "bcryptjs": "^2.4.3",
     "koa": "^2.3.0",
     "koa-body": "^2.3.0",
+    "koa-jwt-mongo": "^2.0.0",
     "koa-router": "^7.2.1",
     "koa-session": "^5.4.0",
     "koa-static": "^4.0.0",

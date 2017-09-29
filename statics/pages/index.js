@@ -57,7 +57,7 @@ export default class IndexPage extends React.Component{
 	handleSignIn(){
 		let {signinName,signinPs} = this.state;
 
-		axios.post('/signin', {
+		axios.post('/sign/signin', {
 			name: signinName,
 			password: signinPs
 		})
@@ -81,7 +81,7 @@ export default class IndexPage extends React.Component{
 	handleSignUp(){
 		let {name,email,password} = this.state;
 
-		axios.post('/signup', {
+		axios.post('/sign/signup', {
 			name,
 			password,
 			email

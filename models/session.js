@@ -1,5 +1,5 @@
-const SessionSchema = require('../schemas/session')
 const mongoose = require('mongoose')
+const SessionSchema = require('../schemas/session')
 
 const SessionModel = mongoose.model('SessionModel',SessionSchema);
 
