@@ -62,28 +62,23 @@ nextApp.prepare().then(()=>{
 	app.use(koaBody());
 	
 	
-	app.use( /* async (ctx,next)=>{
+	app.use( 
+		jwtMongo({
+			connection:mongoose,
+			uri: 'mongodb://localhost:27017/apm',
+			jwtExp: config.jwt.expire,
+			collection: config.jwt.collection,
+			jwtOptions: {
+				secret: config.jwt.secret,
+				key: config.jwt.key
+			},
+			jwtUnless () {
+				const path = this.path;
 
-			await  */jwtMongo({
-				connection:mongoose,
-				uri: 'mongodb://localhost:27017/apm',
-				jwtExp: config.jwt.expire,
-				collection: config.jwt.collection,
-				jwtOptions: {
-					secret: config.jwt.secret,
-					key: config.jwt.key
-				},
-				jwtUnless () {
-					const path = this.path;
-
-					const prefix = `/${path.split('/')[1]}`;
-					return !/apis|sign|projects/.test(prefix)
-				}
-			})
-
-			/* next();
-		} */
-		
+				const prefix = `/${path.split('/')[1]}`;
+				return !/apis|sign|projects/.test(prefix)
+			}
+		})
 	);
 	
 	
