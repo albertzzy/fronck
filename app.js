@@ -62,7 +62,7 @@ nextApp.prepare().then(()=>{
 	app.use(koaBody());
 	
 	
-	app.use( 
+	/* app.use( 
 		jwtMongo({
 			connection:mongoose,
 			uri: 'mongodb://localhost:27017/apm',
@@ -79,7 +79,7 @@ nextApp.prepare().then(()=>{
 				return !/apis|sign|projects/.test(prefix)
 			}
 		})
-	);
+	); */
 	
 	
 	// koa-session

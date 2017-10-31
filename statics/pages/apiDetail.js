@@ -23,7 +23,10 @@ export default class ApiDetail extends React.Component{
 		return(
 			<div>
 				<Header>ApiDetail</Header>
-				<p></p>
+				<p><label>url:</label><span></span></p>
+				<p><label>desc:</label></p>
+				<div></div>
+
 				<textarea></textarea>
 
 				<p><button onClick={this.handleSave}>save</button></p>
