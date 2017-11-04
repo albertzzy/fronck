@@ -1,5 +1,5 @@
 const SessionModel = require('../models/session');
-const {Store}  = require('koa-session2')
+// const {Store}  = require('koa-session2')
 
 class MgStore{
 

@@ -29,7 +29,7 @@ function pageRouters(nextApp){
 
 	router.get('/index',(ctx,next)=>{	
 
-		// console.log(ctx.session);
+		console.log(ctx.session);
 
 		return handle(ctx.req, ctx.res);
 
@@ -53,18 +53,18 @@ function pageRouters(nextApp){
 
 
 	router.get('/workspace',function(ctx,next){
-
-		// console.log(ctx.session);
-		console.log(JSON.stringify(ctx.session));
-
-		/* if(ctx.session.isNew){
+		/* console.log('=======');
+		console.log(ctx.session);
+		console.log('=======');
+ */
+		if(ctx.session.isNew){
 
 			ctx.redirect('/index');
 
-		}else{ */
+		}else{
 
 			return handle(ctx.req, ctx.res);
-		// }
+		}
 		
 	})
 

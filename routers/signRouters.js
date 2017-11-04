@@ -19,7 +19,7 @@ router.post('/sign/signup',async function(ctx,next){
         password
     })
     
-
+console.log('==========');
     try{
         let pro =  await user.save();
         
@@ -50,6 +50,8 @@ router.post('/sign/signin',async function(ctx,next){
 
         let resPro = await userPro[0].comparePassword(password);
 
+        ctx.session.user = {name};
+
         ctx.body = {
             success:resPro,
         };
@@ -58,7 +60,7 @@ router.post('/sign/signin',async function(ctx,next){
        }catch(e){
              ctx.body = {
                  success:false,
-                 res:new Error('signin error')
+                 res:e.toString()
              }
 
        }
