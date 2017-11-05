@@ -28,60 +28,34 @@ function pageRouters(nextApp){
 	// that's default route-handler
 
 	router.get('/index',(ctx,next)=>{	
-
-		console.log(ctx.session);
-
 		return handle(ctx.req, ctx.res);
-
 	})
 
 
 	router.get('/apidetail',function(ctx,next){
-
-		// console.log(ctx.session.isNew);
-
-		// if(ctx.session.isNew){
-
-		// 	ctx.redirect('/index');
-
-		// }else{
-
+		if(ctx.session.isNew){
+			ctx.redirect('/index');
+		}else{
 			return handle(ctx.req, ctx.res);
-		// }
-
+		}
 	})
 
 
 	router.get('/workspace',function(ctx,next){
-		/* console.log('=======');
-		console.log(ctx.session);
-		console.log('=======');
- */
 		if(ctx.session.isNew){
-
 			ctx.redirect('/index');
-
 		}else{
-
 			return handle(ctx.req, ctx.res);
 		}
-		
 	})
 
 
 	router.get('/project',function(ctx,next){
-
-		// console.log(this.session);
-
-		/* if(ctx.session.isNew){
-
+		if(ctx.session.isNew){
 			ctx.redirect('/index');
-
-		}else{ */
-
+		}else{
 			return handle(ctx.req, ctx.res);
-		// }
-		
+		}
 	})
 
 
@@ -91,8 +65,6 @@ function pageRouters(nextApp){
 		return handle(ctx.req, ctx.res);
 
 	})
-
-
 
 
 	return router.routes();

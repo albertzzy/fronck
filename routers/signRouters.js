@@ -72,9 +72,7 @@ router.post('/sign/signin',async function(ctx,next){
 
 
 router.post('/logout',function(ctx,next){
-    
-    // ctx.session = null;
-
+    ctx.session = null;
 })
 
 

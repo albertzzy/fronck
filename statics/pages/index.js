@@ -1,7 +1,11 @@
 import React from 'react';
-import Header from '../components/header.js'
 import 'whatwg-fetch'
 import axios from 'axios'
+
+import { Layout,Tabs , Breadcrumb } from 'antd';
+const { Header, Content, Footer } = Layout;
+const TabPane = Tabs.TabPane;
+
 
 export default class IndexPage extends React.Component{
 	constructor(props){
@@ -65,7 +69,6 @@ export default class IndexPage extends React.Component{
 			console.log(response);
 
 			if(response.data.success){
-				// alert('to workspace')
 				window.location.href = '/workspace';
 
 			}else{
@@ -109,25 +112,40 @@ export default class IndexPage extends React.Component{
 	render(){
 		return(
 			<div>
-				<Header>signin</Header>
+				 <Layout className="layout">
+    				<Header style={{ background: '#ddd',color:'#000' }}>
+						AMP
+					</Header>
+					<Content style={{ padding: '0 50px' }}>
+						<Tabs defaultActiveKey="1">
+							<TabPane tab="signin" key="1">
+								<div>
+									<p><label htmlFor="email">email/user</label><input type="text" onChange={(e)=>{this.handleSigninName.call(this,e)}} value={this.state.signinName}/></p>
+									<p><label htmlFor="password">password</label><input type="text" onChange={(e)=>{this.handleSigninPassword.call(this,e)}} value={this.state.signinPs}/></p>
+									<p><button onClick={this.handleSignIn}>signin</button></p>
+								</div>
+							</TabPane>
+							<TabPane tab="signup" key="2">
+								<div>
+									<p><label htmlFor="user">user</label><input type="text"  onChange={(e)=>{this.handleName.call(this,e)}} value={this.state.name}/></p>
+									<p><label htmlFor="email">email</label><input type="text"  onChange={(e)=>{this.handleEmail.call(this,e)}} value={this.state.email}/></p>
+									<p><label htmlFor="password">password</label><input type="text" onChange={(e)=>{this.handlePassword.call(this,e)}} value={this.state.password} /></p>
+									<p><button onClick={this.handleSignUp.bind(this)}>signup</button></p>
+								</div>
+							</TabPane>
+						</Tabs>
 
-				<div>
-					<p><label htmlFor="email">email/user</label><input type="text" onChange={(e)=>{this.handleSigninName.call(this,e)}} value={this.state.signinName}/></p>
-					<p><label htmlFor="password">password</label><input type="text" onChange={(e)=>{this.handleSigninPassword.call(this,e)}} value={this.state.signinPs}/></p>
-					<p><button onClick={this.handleSignIn}>signin</button></p>
-				</div>
 
+						
+					
+						
 
-				<Header>signup</Header>
+					</Content>
+					<Footer style={{ textAlign: 'center' }}>
+						api management platform ©2017 Created by albert
+					</Footer>
 
-				<div>
-					<p><label htmlFor="user">user</label><input type="text"  onChange={(e)=>{this.handleName.call(this,e)}} value={this.state.name}/></p>
-					<p><label htmlFor="email">email</label><input type="text"  onChange={(e)=>{this.handleEmail.call(this,e)}} value={this.state.email}/></p>
-					<p><label htmlFor="password">password</label><input type="text" onChange={(e)=>{this.handlePassword.call(this,e)}} value={this.state.password} /></p>
-					<p><button onClick={this.handleSignUp.bind(this)}>signup</button></p>
-				</div>
-				
-
+				</Layout>
 			</div>
 
 		)

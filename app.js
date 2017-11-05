@@ -12,8 +12,6 @@ mongoose.connect('mongodb://localhost:27017/apm',{
 
 
 const session = require('koa-session');
-// const jwtMongo = require('koa-jwt-mongo');
-// const config = require('./config/default.json');
 
 // next.js
 const next = require('next');
@@ -41,9 +39,6 @@ const app = new koa();
 app.keys = ['some secret hurr'];
 
 const config = {
-    // ContextStore:MgStore,
-    // store:new MgStore(),
-    // key:'apm:sess',
     key: 'apm:sess',
 	maxAge: 86400000,
 	overwrite: true,
@@ -62,7 +57,7 @@ nextApp.prepare().then(()=>{
 	
 	
 	// koa-session
-	app.use(session(config,app));
+	// app.use(session(config,app));
 
 	// page routes
 	app.use(pageRouters(nextApp));
