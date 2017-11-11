@@ -5,41 +5,60 @@ module.exports = {
 
 	webpack: (config, { dev }) => {
 
-		console.log(config.module);
+		// console.log(config.module.rules[4]);
+		// console.log(config);
 
-		config.resolve.alias = {
-			COMP:path.resolve(__dirname,'components')
-		}
+		// config.module.rules[4].options.babelrc = true; 
 		
-		config.module.rules.push({
-            test: /\.less$/,
-            use: [
-			{
-                loader: "style-loader" // creates style nodes from JS strings
-			}, 
-			{
-				loader: "css-loader",
-				options:{
-					importLoaders:1
-				}
-				
-			},
-			{
-                loader: "less-loader" // compiles Less to CSS
-            }]
-		},
-		{
-			test: /\.css$/,
-            use: [
-			{
-                loader: "style-loader" // creates style nodes from JS strings
-			}, 
-			{
-				loader: "css-loader"
-			}
-			]
-		})
+		config.module.rules.push(/* {
+				test: /\.less$/,
+				use: [
+					{
+						loader: "style-loader"
+					}, 
+					{
+						loader: "css-loader",
+						options:{
+							importLoaders:1
+						}
+						
+					}, 
+					{
+						loader:"postcss-loader",
+						options:{
+							config:{
+								path:'../postcss.config.js'
+							}
+						}
+					},
+					{
+						loader: "less-loader"
 
+					}
+					
+				]
+			}, */
+			{
+				test:/\.css$/,
+				use:[
+					{
+						loader:'style-loader'
+					},
+					{
+						loader:'css-loader'
+					},
+					{
+						loader:"postcss-loader"
+					}
+				]
+
+			} 
+			
+			
+			
+			)
+
+			console.log(config.module.rules);
     	return config
   	},
 

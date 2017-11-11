@@ -1,4 +1,3 @@
-import Header from '../components/header';
 import React from 'react';
 
 export default class Workspace extends React.Component{
@@ -10,7 +9,7 @@ export default class Workspace extends React.Component{
 
 	render(){
 		return(
-			<Header>this is a Workspace page</Header>
+			<p>this is a Workspace page</p>
 
 		)
 

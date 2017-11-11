@@ -1,4 +1,3 @@
-import Header from '../components/header';
 import React from 'react';
 
 export default class ApiDetail extends React.Component{
@@ -22,7 +21,7 @@ export default class ApiDetail extends React.Component{
 	render(){
 		return(
 			<div>
-				<Header>ApiDetail</Header>
+				<p>ApiDetail</p>
 				<p><label>url:</label><span></span></p>
 				<p><label>desc:</label></p>
 				<div></div>

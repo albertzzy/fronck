@@ -1,4 +1,3 @@
-import Header from '../components/header';
 import React from 'react';
 
 export default class Project extends React.Component{
@@ -10,7 +9,7 @@ export default class Project extends React.Component{
 
 	render(){
 		return(
-			<Header>this is a Project page</Header>
+			<p>this is a Project page</p>
 
 		)
 

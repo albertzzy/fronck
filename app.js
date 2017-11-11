@@ -6,9 +6,9 @@ const koaBody = require('koa-body');
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost:27017/apm',{
+/* mongoose.connect('mongodb://localhost:27017/apm',{
     useMongoClient:true
-});
+}); */
 
 
 const session = require('koa-session');
@@ -29,8 +29,6 @@ const signRouters  = require('./routers/signRouters');
 const apiRouters = require('./routers/apiRouters');
 const projectRouters = require('./routers/projectRouters');
 
-// session store
-// const MgStore = require('./store')
 
 
 const app = new koa();
