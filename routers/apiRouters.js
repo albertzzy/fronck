@@ -12,20 +12,21 @@ router.post('/save',async function(ctx,next){
     let param = ctx.request.body;
 
     let api = new ApiModel(param)
-    let res;
+    let res,status = false;
 
     try{
         res = await api.save();
+        status = true;
 
     }catch(e){
         
         res = e;
-
+        status = false;
     }
 
 
     ctx.body = {
-        result:'success',
+        success:status,
         data:res
     }
 })

@@ -1,0 +1,20 @@
+{% extends 'template/layout.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="/apidetail.css">
+{% endblock %}
+
+{% block body %}
+    <p><label class="catname">url</label><span>{{detail.url}}</span></p>
+    <p><label class="catname">method</label><span>{{detail.method}}</span></p>
+    <p><label class="catname">params</label><span>{{detail.params}}</span></p>
+    <p><label class="catname">success</label><span>{{detail.response}}</span></p>
+    <p><label class="catname">error</label><span>{{detail.error}}</span></p>
+
+
+{% endblock %}
+
+{% block content %}
+<script src="/jquery-3.2.1.min.js"></script>
+<script src="/apidetail.js"></script>
+{% endblock%}

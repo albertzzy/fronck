@@ -1,0 +1,32 @@
+{% extends 'template/layout.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="/index.css">
+{% endblock %}
+
+{% block body %}
+<div class="box">
+    <ul class="tabs" id="box-tabs">
+        <li class="tabs-item active">signin</li>
+        <li class="tabs-item">signup</li>
+    </ul>
+    <div class="tabs-item-con" >
+        <p><label class="info" for="si_user">email/user</label><input type="text" id="si_user"/></p>
+        <p><label class="info" for="si_pwd">password</label><input type="text" id="si_pwd"/></p>
+        <p><button id="signin">signin</button></p>
+    </div>
+    <div class="tabs-item-con" style="display:none;">
+        <p><label class="info" for="so_user">user</label><input type="text" id="so_user"/></p>
+        <p><label class="info" for="so_email">email</label><input type="text" id="so_email" /></p>
+        <p><label class="info" for="so_pwd">password</label><input type="text" id="so_pwd"/></p>
+        <p><button id="signup">signup</button></p>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block content %}
+<script src="/jquery-3.2.1.min.js"></script>
+<script src="/index.js"></script>
+{% endblock%}

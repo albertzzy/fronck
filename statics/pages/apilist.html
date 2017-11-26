@@ -1,0 +1,31 @@
+{% extends 'template/layout.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="/apilist.css">
+{% endblock %}
+
+{% block body %}
+    <button id="createapi">new api</button>
+    
+    <div class="newapi" style="display:none;">
+        <p><label for="api_url">url:</label><input type="text" id="api_url"/></p>
+        <p><label for="api_method">method:</label><input type="radio" value="get" name="api_method" class="api_method"/>get<input type="radio" name="api_method" value="post" class="api_method"/>post</p>
+        <p><label for="api_args">args:</label><textarea id="api_ok_args"/></textarea></p>
+        <p><label for="api_ok_res">success:</label><textarea id="api_ok_res"/></textarea></p>
+        <p><label for="api_error_res">error:</label><textarea id="api_error_res"></textarea></p>
+        <p><button id="apisubmit">submit</button></p>
+    </div>
+
+    <ul>
+        {% for item in apilist %}
+        <li><a class="api-url" href="/apidetail?aid={{ item._id }}">{{ item.url }}</a></li>
+        {% endfor %}
+    </ul>
+
+
+{% endblock %}
+
+{% block content %}
+<script src="/jquery-3.2.1.min.js"></script>
+<script src="/apilist.js"></script>
+{% endblock%}

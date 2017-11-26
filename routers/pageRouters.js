@@ -1,75 +1,37 @@
 const Router = require('koa-router');
-
-const router = new Router();
-
-
-function pageRouters(nextApp){
-
-	const handle = nextApp.getRequestHandler();
+const router = Router();
+const ApiModel = require('../models/api');
 
 
-	// for route mask
-	/*router.get('/home',(ctx,next)=>{
-
-		console.log(__dirname)
-
-		nextApp.render(ctx.req,ctx.res,'/index');
-
-	})	
-
-	router.get('/ws',(ctx,next)=>{
-
-		nextApp.render(ctx.req,ctx.res,'/workspace');
-
-	})*/
+router.get('/',async (ctx,next)=>{
+	await ctx.render('index');
+})
 
 
-	
-	// that's default route-handler
+router.get('/apilist',async (ctx,next) =>{
+	if(ctx.session.isNew){
+		ctx.redirect('/');
+	}else{
+		let apilist = await ApiModel.find({});
 
-	router.get('/index',(ctx,next)=>{	
-		return handle(ctx.req, ctx.res);
-	})
-
-
-	router.get('/apidetail',function(ctx,next){
-		if(ctx.session.isNew){
-			ctx.redirect('/index');
-		}else{
-			return handle(ctx.req, ctx.res);
-		}
-	})
+		await ctx.render('apilist',{apilist});
+	}
+})
 
 
-	router.get('/workspace',function(ctx,next){
-		if(ctx.session.isNew){
-			ctx.redirect('/index');
-		}else{
-			return handle(ctx.req, ctx.res);
-		}
-	})
-
-
-	router.get('/project',function(ctx,next){
-		if(ctx.session.isNew){
-			ctx.redirect('/index');
-		}else{
-			return handle(ctx.req, ctx.res);
-		}
-	})
-
-
-	// other stuff?
-	router.get('*',(ctx,next)=>{	
-
-		return handle(ctx.req, ctx.res);
-
-	})
-
-
-	return router.routes();
-}
+router.get('/apidetail',async (ctx,next) =>{
+	if(ctx.session.isNew){
+		ctx.redirect('/');
+	}else{
+		let {aid} = ctx.request.query;
+		let detail = await ApiModel.findOne({_id:aid});
+		await ctx.render('apidetail',{detail});
+	}
+})
 
 
 
-module.exports = pageRouters;
+
+
+
+module.exports = router;

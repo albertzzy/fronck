@@ -1,25 +1,20 @@
-const koa = require('koa')
+const koa = require('koa');
+const path = require('path');
 const koaStatic = require('koa-static');
 const koaBody = require('koa-body');
+const koaNunjucks = require('koa-nunjucks-2');
 
 //plugin own promise 
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
-/* mongoose.connect('mongodb://localhost:27017/apm',{
-    useMongoClient:true
-}); */
 
+
+mongoose.connect('mongodb://localhost:27017/apm',{
+    useMongoClient:true
+});
 
 const session = require('koa-session');
-
-// next.js
-const next = require('next');
-const dev = process.env.NODE_ENV !== 'production';
-const nextApp = next({
-	dev,
-	dir:'./statics'
-});
 
 
 
@@ -27,7 +22,7 @@ const nextApp = next({
 const pageRouters = require('./routers/pageRouters');
 const signRouters  = require('./routers/signRouters');
 const apiRouters = require('./routers/apiRouters');
-const projectRouters = require('./routers/projectRouters');
+
 
 
 
@@ -48,32 +43,39 @@ const config = {
 
 
 
-nextApp.prepare().then(()=>{
-	
-	
-	app.use(koaBody());
-	
-	
-	// koa-session
-	// app.use(session(config,app));
+app.use(koaBody());
 
-	// page routes
-	app.use(pageRouters(nextApp));
+app.use(koaStatic('statics/js'))
+app.use(koaStatic('statics/style'))
+
+// koa-session
+app.use(session(config,app));
 
 
-	// api routes
-	app.use(signRouters.routes());
-	app.use(apiRouters.routes());
-	app.use(projectRouters.routes());
+app.use(koaNunjucks({
+	ext: 'html',
+	path: path.join(__dirname, 'statics/pages'),
+	nunjucksConfig: {
+		trimBlocks: true
+	}
+}));
+  
+
+
+// page routes
+app.use(pageRouters.routes());
+
+
+// api routes
+app.use(signRouters.routes());
+app.use(apiRouters.routes());
 
 
 
-	app.listen(3000,()=>{
-	    console.log('app is listening at 3000 u smart ass...');
-	})
-
-
+app.listen(3000,()=>{
+	console.log('app is listening at 3000 u smart ass...');
 })
+
 
 
 

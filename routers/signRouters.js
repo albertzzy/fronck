@@ -19,7 +19,6 @@ router.post('/sign/signup',async function(ctx,next){
         password
     })
     
-console.log('==========');
     try{
         let pro =  await user.save();
         

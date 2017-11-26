@@ -4,9 +4,6 @@ const Schema = mongoose.Schema;
 const Mixed = Schema.Types.Mixed;
 
 const api = new Schema({
-    name:{
-        type:String
-    },
     method:{
         type:String
     },
@@ -17,6 +14,9 @@ const api = new Schema({
         type:Mixed
     },
     response:{
+        type:Mixed
+    },
+    error:{
         type:Mixed
     },
     author:{
