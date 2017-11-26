@@ -6,7 +6,7 @@ import axios from 'axios'
 const { Header, Content, Footer } = Layout;
 const TabPane = Tabs.TabPane; */
 // import 'antd/dist/antd.css';
-import './index.css'
+import '../style/index.css'
 
 export default class IndexPage extends React.Component{
 	constructor(props){
@@ -114,9 +114,9 @@ export default class IndexPage extends React.Component{
 		return(
 			<div>
 				 <div className="layout">
-    				<header style={{ background: '#ddd',color:'#000' }}>
+    				<div style={{ background: '#ddd',color:'#000' }}>
 						AMP
-					</header>
+					</div>
 					<div style={{ padding: '0 50px' }}>
 						<div>
 							<div tab="signin" key="1">

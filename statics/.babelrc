@@ -8,6 +8,9 @@
             "libraryName": "antd",
             "style": true
           }
-        ]
+        ],
+        ["css-modules-transform", {
+          "extensions": [".css"]
+        }]
     ]
 }
