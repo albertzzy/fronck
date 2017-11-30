@@ -42,6 +42,28 @@ router.get('/delete/:aid',function(ctx,next){
 
 
 
+router.get('/getmock/:aid',async (ctx,next) => {
+    let param = ctx.params.aid;
+
+    try{
+        let api = await ApiModel.findOne({_id:param})
+
+        ctx.body = {
+            result:'success',
+            data:api.response
+        }
+
+    }catch(e){
+        
+        ctx.body = {
+            result:'error',
+            data:e.toString()
+        }
+    }
+    
+})
+
+
 
 
 
